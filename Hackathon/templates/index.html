@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Evaluator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+</head>
+<body>
+    
+    <header class="banner">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+
+    </header>
+    <div class="main-container">
+        <div class="idea-container">
+            <!-- Idea Input Area -->
+            <h4> Share Your Sustainable Concept:</h4>
+            <textarea id="ideaInput" placeholder="Type idea here.."></textarea>
+            <button id="evaluateButton">Evaluate</button>
+
+            
+
+        <div id="chatbotContainer">
+            <div class="chatbot-header">
+                <img src="{{ url_for('static', filename='images/chatbot_icon.png') }}" alt="Chatbot Icon" class="chatbot-icon">
+                <span class="chatbot-name">Hi! My name is Sust<span class="highlight">AI</span>n. I am an expert in evaluating circular economy business ideas. </span>
+            </div>
+            <p class="chatbot-subtitle">Your Personal Idea Guide</p>
+            <div id="chatbotContent" class="chat-content">
+                <!-- GPT advice will be displayed here -->
+            </div>
+        </div>
+        
+        
+
+        </div>
+        <div class="container-two">
+        <div class="slider-container" id="kpiSliders">
+            <h4> Assess Your Idea's Potential: </h4> 
+            <h5> Refine your idea by adjusting these scores to see how it affects the other factors.</h5> <br>
+            <label for="innovation-slider">Innovation and Feasibility: <span id="innovation-score"></span></label>
+            <input type="range" id="Innovation and Feasibility-slider" min="1" max="5" step="1" value="3" oninput="updateSliderScore(this.id, this.value)">
+            
+            <label for="resource-slider">Resource Efficiency: <span id="resource-score"></span></label>
+            <input type="range" id="Resource Efficiency-slider" min="1" max="5" step="1" value="3" oninput="updateSliderScore(this.id, this.value)">
+            
+            <label for="environment-slider">Environmental Impact: <span id="environment-score"></span></label>
+            <input type="range" id="Environmental Impact-slider" min="1" max="5" step="1" value="3" oninput="updateSliderScore(this.id, this.value)">
+            
+            <label for="scalability-slider">Scalability and Adaptability: <span id="scalability-score"></span></label>
+            <input type="range" id="Scalability and Adaptability-slider" min="1" max="5" step="1" value="3" oninput="updateSliderScore(this.id, this.value)">
+     
+        
+    </div>
+
+    <h4> Visualize Your Idea's Impact: </h4>
+        <div class="chart-container">
+            
+            <canvas id="kpiChart"></canvas>
+        </div>
+        <!-- Add this inside your existing HTML body -->
+    <form id="simulationForm"> <h4>Circular Economy Impact Simulator: </h4>
+    <input type="number" id="initialInvestment" placeholder="Initial Investment">
+    <input type="number" id="years" placeholder="Years">
+    <select id="resourceTypes">
+        <!-- Options for resource types -->
+        <option value="type1">Renewable Resources</option>
+        <option value="type2">Non-renewable Resources</option>
+        <!-- Add more options as needed -->
+    </select> <br> <br>
+    <button type="submit">Run Simulation</button>
+
+</form> 
+<div id="simulationResult"></div>
+    </div>
+    
+    <div id="overlay">
+        <div id="text">Evaluating...</div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
